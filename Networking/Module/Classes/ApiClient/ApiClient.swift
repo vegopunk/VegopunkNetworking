@@ -28,26 +28,10 @@ final class TasksStorage {
 
 public final class ApiClient {
     
-    private static let username = "esports"
-    private static let password = "esportsupass!=test"
-    
     private let storage = TasksStorage.shared
     
     private let plugins: [PluginType] = [
-        NetworkLoggerPlugin(),
-        AccessTokenPlugin(tokenClosure: { type -> String in
-            switch type {
-            case .basic:
-                guard
-                    let loginData = String(format: "\(username):\(password)").data(using: .utf8)
-                else {
-                    return ""
-                }
-                return loginData.base64EncodedString()
-            default:
-                return ""
-            }
-        })
+        NetworkLoggerPlugin()
     ]
     
     public init() {}
